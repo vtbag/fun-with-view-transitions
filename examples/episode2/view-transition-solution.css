@@ -1,0 +1,22 @@
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-group(root) {
+  animation-duration: 200ms;
+}
+
+::view-transition-old(root) {
+  animation-duration: 150ms;
+}
+::view-transition-new(root) {
+  animation: 150ms 100ms both slide-up linear(0, 1.2 50%, 0.8 75%, 1);
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10vh);
+  }
+}
