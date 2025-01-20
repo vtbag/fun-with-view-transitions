@@ -1,0 +1,66 @@
+:root {
+  color-scheme:dark;
+    --primary-color: light-dark(#646cff, #a5a9ff);
+    --secondary-color: light-dark(#535bf2, #8f94ff);
+    --bg-color: light-dark(#f8f9fa, #1a1a1a);
+    --text-color: light-dark(#213547, #ffffff);
+    --card-bg: light-dark(#ffffff, #242424);
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.intro {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.example-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.example-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.example-card h2 {
+    margin: 0 0 1rem 0;
+    color: var(--primary-color);
+}
+
+.example-card p {
+    margin: 0;
+    opacity: 0.8;
+}
