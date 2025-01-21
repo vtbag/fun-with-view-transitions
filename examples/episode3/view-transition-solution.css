@@ -1,0 +1,46 @@
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root) {
+  animation-duration: 600ms;
+}
+::view-transition-new(root) {
+  animation: 600ms 400ms both slide-up linear(0, 1.2 50%, 0.8 75%, 1);
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10vh);
+  }
+}
+
+/* --- */
+
+
+#white-board {
+  view-transition-name: white-board;
+}
+::view-transition-group(white-board) {
+  animation-duration: 1000ms;
+}
+
+#fish {
+  view-transition-name: fish;
+}
+::view-transition-group(fish) {
+  animation-duration: 800ms;
+}
+
+h1 {
+  view-transition-name: title;
+}
+::view-transition-group(title) {
+  animation-duration: 600ms;
+}
+
+nav {
+  view-transition-name: navigation;
+}

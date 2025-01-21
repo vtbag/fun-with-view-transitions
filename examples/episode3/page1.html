@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Episode 3 - Page 1</title>
+    <link rel="expect" href="#content" blocking="render" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="view-transition.css" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "urls": [
+              "/examples/episode3/page1.html",
+              "/examples/episode3/page2.html"
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a href="/index.html">← Back to Examples</a>
+      </nav>
+      <img id="fish" class="left" src="/assets/fish.webp" alt="a fish" />
+      <h1>Make Your Images Glide Across the Screen!</h1>
+      <div id="content" class="content">
+        <h2>Page One</h2>
+        <img id="white-board" class="small" src="/assets/white-board.webp" alt="White board" />
+        <p>
+          This examples has two pages with custom cross-document view
+          transitions.
+        </p>
+        <p>
+          Edit the <code>page1.html</code> and <code>page2.html</code> files to
+        </p>
+        <ul>
+          <li>
+            set the animation duration of the view transition to 10 seconds
+          </li>
+        </ul>
+        <p>Edit the <code>view-transition.css</code> file to</p>
+        <ul>
+          <li>
+            set the animation duration of the view transition to 10 seconds
+          </li>
+          <li>
+            examine the view transition pseudo-elements rooted at the
+            &lt;html&gt; element in the browser's developer tools
+          </li>
+          <li>
+            don't forget to set the over all timing back to 0.2 or 0.25 seconds
+            ;-)
+          </li>
+          <li>
+            change the default animation and make the new image slide up a bit
+            from below
+          </li>
+          <li>
+            conduct some experiments with the timing function of the new image
+            animation
+          </li>
+        </ul>
+        <a href="page2.html" class="next-button">Go to Page Two →</a>
+      </div>
+    </main>
+  </body>
+</html>

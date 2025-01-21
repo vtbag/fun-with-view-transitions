@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Episode 3 - Page 2</title>
+    <link rel="expect" href="#content" blocking="render" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="view-transition.css" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "urls": [
+              "/examples/episode3/page1.html",
+              "/examples/episode3/page2.html"
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main id="main">
+      <nav>
+        <a href="/index.html">← Back to Examples</a>
+      </nav>
+      <h1>Make Your Images Glide Across the Screen!</h1>
+      <img id="fish" class="right" src="/assets/fish.webp" alt="a fish" />
+      <div id="content" class="content">
+        <h2>Page Two</h2>
+        <p>Watch how smoothly we transitioned to this page!</p>
+        <a href="page1.html" class="next-button">← Back to Page One</a>
+        <img id="white-board" src="/assets/white-board.webp" alt="White board" />
+      </div>
+    </main>
+  </body>
+</html>
