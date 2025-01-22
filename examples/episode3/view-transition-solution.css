@@ -19,19 +19,11 @@
 
 /* --- */
 
-
 #white-board {
   view-transition-name: white-board;
 }
 ::view-transition-group(white-board) {
   animation-duration: 1000ms;
-}
-
-#fish {
-  view-transition-name: fish;
-}
-::view-transition-group(fish) {
-  animation-duration: 800ms;
 }
 
 h1 {
@@ -41,6 +33,28 @@ h1 {
   animation-duration: 600ms;
 }
 
-nav {
-  view-transition-name: navigation;
+h2 {
+  view-transition-name: sub-title;
+}
+::view-transition-group(sub-title) {
+  animation-duration: 1000ms;
+}
+
+#fish {
+  view-transition-name: fish;
+}
+::view-transition-group(fish) {
+  animation-duration: 800ms;
+}
+#content {
+  view-transition-name: content;
+  &.small {
+    max-width: 50%;
+  }
+  a {
+    view-transition-name: link;
+  }
+}
+::view-transition-group(content) {
+  animation-duration: 800ms;
 }

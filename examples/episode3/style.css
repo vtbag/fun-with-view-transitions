@@ -58,6 +58,9 @@ h1 {
   background-color: light-dark(#535bf2, #8f94ff);
 }
 
+#white-board {
+  max-width:300px;
+}
 
 
 #fish.right {
