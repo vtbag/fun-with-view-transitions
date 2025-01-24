@@ -37,14 +37,14 @@ h2 {
   margin-bottom: 3rem;
 }
 
-.examples-grid {
+.episode-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: 1rem;
 }
 
-.example-card {
+.episode-card {
   background: var(--card-bg);
   border-radius: 8px;
   padding: 1.5rem;
@@ -56,17 +56,17 @@ h2 {
     box-shadow 0.2s;
 }
 
-.example-card:hover {
+.episode-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.example-card h2 {
+.episode-card h2 {
   margin: 0 0 1rem 0;
   color: var(--primary-color);
 }
 
-.example-card p {
+.episode-card p {
   margin: 0;
   opacity: 0.8;
 }

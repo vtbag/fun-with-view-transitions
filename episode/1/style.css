@@ -25,6 +25,7 @@ nav a {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-wrap: balance;
 }
 
 .content {

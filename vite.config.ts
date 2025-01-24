@@ -5,10 +5,18 @@ import { sync as globSync } from "glob";
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: globSync(["*.html","examples/*/*.html"], { cwd: __dirname }).reduce((entries: Record<string, string>, file: string) => {
+      input: globSync(["*.html","episode/*/*.html", "solved/*/*.html","videos/*.mp4"], { cwd: __dirname }).reduce((entries: Record<string, string>, file: string) => {
         entries[file.split(".")[0]] = resolve(__dirname, file);
         return entries;
-      }, {} as Record<string, string>)
+      }, {} as Record<string, string>),
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.mp4')) {
+            return 'videos/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        }
+      }
     }
   }
 });

@@ -5,7 +5,6 @@ body {
   background-color: light-dark(#f8f9fa, #1a1a1a);
   color: light-dark(#213547, #ffffff);
   line-height: 1.6;
-  overflow: scroll;
 }
 
 main {
@@ -26,6 +25,7 @@ nav a {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-wrap: balance;
 }
 
 .content {
@@ -34,14 +34,6 @@ h1 {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
-
-.content img.small {
-  width: 200px;
-  height: auto;
-  float: right;
-}
-
 
 .next-button {
   display: inline-block;
@@ -56,14 +48,4 @@ h1 {
 
 .next-button:hover {
   background-color: light-dark(#535bf2, #8f94ff);
-}
-
-#white-board {
-  max-width:300px;
-}
-
-
-#fish.right {
-  float: right;
-  transform: rotateY(180deg)
 }
