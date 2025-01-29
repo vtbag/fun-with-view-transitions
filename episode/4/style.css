@@ -1,0 +1,82 @@
+body {
+  color-scheme: light dark;
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: light-dark(#f8f9fa, #1a1a1a);
+  color: light-dark(#213547, #ffffff);
+  line-height: 1.6;
+  overflow: scroll;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+nav {
+  margin-bottom: 2rem;
+}
+
+nav a {
+  color: light-dark(#646cff, #a5a9ff);
+  text-decoration: none;
+}
+
+.arrow {
+  text-shadow: 0 0  8px red;
+}
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-wrap: balance;
+}
+
+h2 {
+  display: inline-block;
+}
+
+.content {
+  background: light-dark(#ffffff, #242424);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.content img.small {
+  width: 200px;
+  height: auto;
+  float: right;
+}
+
+
+.next-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: light-dark(#646cff, #a5a9ff);
+  color: light-dark(#ffffff, #1a1a1a);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.next-button:hover {
+  background-color: light-dark(#535bf2, #8f94ff);
+}
+
+#whiteboard {
+  max-width:500px;
+}
+
+#fish {
+  display: block;
+  float: left;
+}
+
+#fish.right {
+  margin-left:auto;
+  transform: rotateY(180deg);
+  float: right;
+}

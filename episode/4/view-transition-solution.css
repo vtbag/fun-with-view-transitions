@@ -1,0 +1,85 @@
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+
+::view-transition-old(root) {
+  animation-duration: 600ms;
+}
+::view-transition-new(root) {
+  animation: 600ms 400ms both slide-up linear(0, 1.2 50%, 0.8 75%, 1);
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10vh);
+  }
+}
+
+
+
+/* --- */
+
+#whiteboard {
+  view-transition-name: whiteboard;
+}
+
+nav {
+  view-transition-name: nav;
+}
+
+
+#fish {
+  view-transition-name: fish;
+}
+::view-transition-group(fish) {
+  animation-duration: 800ms;
+}
+
+
+#content {
+  view-transition-name: content;
+  a {
+    view-transition-name: link;
+  }
+}
+::view-transition-group(content) {
+  animation-duration: 800ms;
+}
+
+
+b {
+  view-transition-name: arrow;
+}
+
+::view-transition-group(arrow) {
+  animation-duration: 1000ms;
+}
+
+
+
+
+h2 {
+  view-transition-name: subtitle;
+}
+::view-transition-group(subtitle) {
+  overflow: hidden;
+}
+::view-transition-old(subtitle) {
+  animation: turn-out 500ms linear both;
+}
+::view-transition-new(subtitle) {
+  animation: turn-in 500ms 100ms linear both;
+}
+@keyframes turn-out {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes turn-in {
+  from {
+    transform: translateX(100%);
+  }
+}
