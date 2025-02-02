@@ -5,6 +5,7 @@ body {
   background-color: light-dark(#f8f9fa, #1a1a1a);
   color: light-dark(#213547, #ffffff);
   line-height: 1.6;
+  scrollbar-gutter: stable;
 }
 
 main {

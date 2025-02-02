@@ -1,0 +1,6 @@
+#! /bin/sh
+
+mkdir -p public
+cp node_modules/@vtbag/inspection-chamber/lib/index.js public/inspection-chamber.js
+npx vite build
+echo "/*\n  cache-control: max-age=60\n  last-modified: `date -u +'%a, %d %b %Y %H:%M:%S GMT'`" > dist/_headers

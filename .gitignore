@@ -1,7 +1,9 @@
 keep
 
 solved
-bin
+bin/video
+bin/solved
+public/inspection-chamber.js
 tests
 videos
 list

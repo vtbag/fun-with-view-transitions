@@ -1,0 +1,5 @@
+#! /bin/sh
+
+mkdir -p public
+cp node_modules/@vtbag/inspection-chamber/lib/index.js public/inspection-chamber.js
+npx vite dev
