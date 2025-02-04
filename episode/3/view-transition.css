@@ -1,19 +1,29 @@
+/* This enables same-origin, cross-document view transitions
+for supporting browsers if the user doesn't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
 }
 
+/* Replace the default animation duration of 250 ms with a duration of one second.
+Not necessary when you also use the following rules as those override with their own values.*/
 ::view-transition-group(root) {
   animation-duration: 1000ms;
 }
 
+/* Let the old image fade out over 0.6 seconds */
 ::view-transition-old(root) {
   animation-duration: 600ms;
 }
+
+/* Let the new image fade in over 0.6 seconds, but only after a delay of 0.4 seconds.
+Slide in the image from the bottom of the viewport using a primitive bump timing function */
+
 ::view-transition-new(root) {
   animation: 600ms 400ms both slide-up linear(0, 1.2 50%, 0.8 75%, 1);
 }
+/* Fade in and slide up. */
 @keyframes slide-up {
   from {
     opacity: 0;

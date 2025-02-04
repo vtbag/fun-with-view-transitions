@@ -1,13 +1,16 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Episode 3 - Page 1</title>
-    <link rel="expect" href="#content" blocking="render" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="view-transition.css" />
-    <script type="speculationrules">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode 3 - Page 1</title>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="expect" href="#main" blocking="render" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view-transition.css" />
+  <script type="speculationrules">
       {
         "prerender": [
           {
@@ -19,35 +22,39 @@
         ]
       }
     </script>
-  </head>
-  <body>
-    <main>
-      <nav>
-        <a href="/index.html">← Back to Examples</a>
-      </nav>
-      <img id="fish" class="left" src="/assets/fish.webp" alt="a fish" />
-      <h1>Make Your Images Glide Across the Screen!</h1>
-      <div id="content" class="content">
-        <h2>Page One</h2>
-        <img id="whiteboard" class="small" src="/assets/whiteboard.webp" alt="White board" />
-        <p>
-          This example has two pages with custom cross-document view
-          transitions and some pictures.
-        </p>
-        <p>Edit the <code>view-transition.css</code> file to</p>
-        <ul>
-          <li>
-            enable that iconic image morph for the whiteboard by adding the same <code>view-transition-name</code> to the image on both pages
-          </li>
-          <li>
-            play with <code>view-transition-name</code> pairs for content areas, links, arrows, fish, and headings
-          </li>
-          <li>
-            notice irritating results when morphing small texts like links and headings that have different content or styling.
-          </li>
-        </ul>
-        <a href="page2.html" class="next-button">Go to Page Two <b class="arrow">🢂</b></a>
-      </div>
-    </main>
-  </body>
+</head>
+
+<body>
+  <main id="main">
+    <nav>
+      <a href="/index.html">← All exercises</a><a href="https://vtbag.dev/fwvt/morphing/">Episode 3 →</a>
+    </nav>
+    <img id="fish" class="left" src="/assets/fish.webp" alt="a fish" />
+    <h1>Make Your Images Glide Across the Screen!</h1>
+    <div id="card" class="card">
+      <h2>Page One</h2>
+      <img id="whiteboard" class="small" src="/assets/whiteboard.webp" alt="White board" />
+      <p>
+        This example has two pages with custom cross-document view
+        transitions and some pictures.
+      </p>
+      <p>Edit the <code>view-transition.css</code> file to</p>
+      <ul>
+        <li>
+          enable that iconic image morph for the whiteboard by adding the same <code>view-transition-name</code> to the
+          image on both pages
+        </li>
+        <li>
+          play with <code>view-transition-name</code> pairs for content areas, links, arrows, fish, and headings
+        </li>
+        <li>
+          notice irritating results when morphing small texts like links and headings that have different content or
+          styling.
+        </li>
+      </ul>
+      <a href="page2.html" class="next-button">Go to Page Two <b class="arrow">🢂</b></a>
+    </div>
+  </main>
+</body>
+
 </html>

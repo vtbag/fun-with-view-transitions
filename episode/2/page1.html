@@ -1,42 +1,48 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Episode 2 - Page 1</title>
-    <link rel="expect" href="#content" blocking="render" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="view-transition.css" />
-  </head>
-  <body>
-    <main>
-      <nav>
-        <a href="/index.html">← Back to Examples</a>
-      </nav>
-      <h1>Check and Control the Image Animations!</h1>
-      <div id="content" class="content">
-        <h2>Page One</h2>
-        <p>This example has two pages with default cross-document view transitions.</p>
-        <p>Edit the <code>view-transition.css</code> file to</p>
-        <ul>
-          <li>
-            set the animation duration of the view transition to 10 seconds
-          </li>
-          <li>
-            examine the view transition pseudo-elements rooted at the &lt;html&gt; element in the browser's developer tools
-          </li>
-          <li>
-            don't forget to set the over all timing back to 0.2 or 0.25 seconds ;-)
-          </li>
-          <li>
-            change the default animation and make the new image slide up a bit from below
-          </li>
-          <li>
-            conduct some experiments with the timing function of the new image animation
-          </li>
-        </ul>
-        <a href="page2.html" class="next-button">Go to Page Two →</a>
-      </div>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode 2 - Page 1</title>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="expect" href="#main" blocking="render" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view-transition.css" />
+</head>
+
+<body>
+  <main id="main">
+    <nav>
+      <a href="/index.html">← All exercises</a><a href="https://vtbag.dev/fwvt/customizing/">Episode 2 →</a>
+    </nav>
+    <h1>Check and Control the Image Animations!</h1>
+    <div id="card" class="card">
+      <h2>Page One</h2>
+      <p>This example has two pages with default cross-document view transitions.</p>
+      <p>Edit the <code>view-transition.css</code> file to</p>
+      <ul>
+        <li>
+          set the animation duration of the view transition to 10 seconds
+        </li>
+        <li>
+          examine the view transition pseudo-elements rooted at the &lt;html&gt; element in the browser's developer
+          tools
+        </li>
+        <li>
+          don't forget to set the over all timing back to 0.2 or 0.25 seconds ;-)
+        </li>
+        <li>
+          change the default animation and make the new image slide up a bit from below
+        </li>
+        <li>
+          conduct some experiments with the timing function of the new image animation
+        </li>
+      </ul>
+      <a href="page2.html" class="next-button">Go to Page Two →</a>
+    </div>
+  </main>
+</body>
+
 </html>

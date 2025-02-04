@@ -1,53 +1,64 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Episode 3 - Page 1</title>
-    <link rel="expect" href="#content" blocking="render" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="view-transition.css" />
-    <script type="speculationrules">
+<html lang="en" class="page1">
+
+<head>
+
+  <script src="/inspection-chamber.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode 4 - Page 1</title>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="expect" href="#main" blocking="render" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view-transition.css" />
+  <script type="speculationrules">
       {
         "prerender": [
           {
-            "urls": [
-              "/episode/4/page1.html",
-              "/episode/4/page2.html"
-            ]
+            "urls": ["/episode/4/page1.html", "/episode/4/page2.html"]
           }
         ]
       }
     </script>
-  </head>
-  <body>
-    <main>
-      <nav>
-        <a href="/index.html">← Back to Examples</a>
-      </nav>
-      <img id="fish" class="left" src="/assets/fish.webp" alt="a fish" />
-      <h1>Make Your Images Glide Across the Screen!</h1>
-      <div id="content" class="content">
-        <h2>Page One</h2>
-        <img id="whiteboard" class="small" src="/assets/whiteboard.webp" alt="White board" />
-        <p>
-          This example has two pages with custom cross-document view
-          transitions and some pictures.
-        </p>
-        <p>Edit the <code>view-transition.css</code> file to</p>
-        <ul>
-          <li>
-            enable that iconic image morph for the whiteboard by adding the same <code>view-transition-name</code> to the image on both pages
-          </li>
-          <li>
-            play with <code>view-transition-name</code> pairs for content areas, links, arrows, fish, and headings
-          </li>
-          <li>
-            notice irritating results when morphing small texts like links and headings that have different content or styling.
-          </li>
-        </ul>
-        <a href="page2.html" class="next-button">Go to Page Two <b class="arrow">🢂</b></a>
-      </div>
-    </main>
-  </body>
+</head>
+
+<body>
+  <main id="main">
+    <nav>
+      <a href="/index.html">← All exercises</a><a href="https://vtbag.dev/fwvt/healing/">Episode 4 →</a>
+    </nav>
+    <h1>Welcome to the Morphology Clinic</h1>
+    <h2>Page One</h2>
+
+    <div id="card" class="card">
+      <h3>The Morphology Clinic</h3>
+      <p class="desc1">This is the short description of the article.</p>
+      <p><span class="content1">More content</span> <span class="here1">soon.</span></p>
+      <p>Goto <a href="page2.html">Page Two</a></p>
+    </div>
+    <p>
+      Analyze and fix the animations on these two pages:
+    </p>
+    <p></p>
+    <ul>
+      <li>
+        Use the devTools' animation panel and the Inspection Chamber to put the
+        animations through their paces.
+      </li>
+      <li>
+        Improve the morph effects by fixing the CSS.
+      </li>
+    </ul>
+    <p>
+      Now that you're aware of the challenges, take better care of yourselves moving forward.
+    </p>
+  </main>
+  <script>
+    sessionStorage.setItem("vtbag-ui-reopener-position", `{"reopenerLeft":"${window.innerWidth / 2 - 40}px","reopenerTop":"20px"}`);
+    localStorage.setItem("vtbag-tutorial-mode", "false")
+  </script>
+
+</body>
+
 </html>

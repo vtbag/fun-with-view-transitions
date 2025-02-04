@@ -16,6 +16,8 @@ main {
 
 nav {
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a {
@@ -29,7 +31,7 @@ h1 {
   text-wrap: balance;
 }
 
-.content {
+.card {
   background: light-dark(#ffffff, #242424);
   padding: 2rem;
   border-radius: 8px;

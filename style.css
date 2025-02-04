@@ -5,6 +5,7 @@
   --bg-color: light-dark(#f8f9fa, #1a1a1a);
   --text-color: light-dark(#213547, #ffffff);
   --card-bg: light-dark(#ffffff, #242424);
+  hyphens: auto;
 }
 
 body {

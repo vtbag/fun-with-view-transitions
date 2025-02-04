@@ -1,3 +1,5 @@
+/* This enables same-origin, cross-document view transitions
+for supporting browsers if the user doesn't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
@@ -5,12 +7,18 @@
 }
 
 
+/* Let the old image fade out over 0.6 seconds */
 ::view-transition-old(root) {
   animation-duration: 600ms;
 }
+
+/* Let the new image fade in over 0.6 seconds, but only after a delay of 0.4 seconds.
+Slide in the image from the bottom of the viewport using a primitive bump timing function */
+
 ::view-transition-new(root) {
   animation: 600ms 400ms both slide-up linear(0, 1.2 50%, 0.8 75%, 1);
 }
+/* Fade in and slide up. */
 @keyframes slide-up {
   from {
     opacity: 0;
@@ -18,10 +26,11 @@
   }
 }
 
-
-
 /* --- */
 
+
+/* assign view transition names to elements: Whiteboard, navigation, fish, card, arrow, and subtitles
+If not stated otherwise, the new animations default to 250 milliseconds */
 #whiteboard {
   view-transition-name: whiteboard;
 }
@@ -39,13 +48,13 @@ nav {
 }
 
 
-#content {
-  view-transition-name: content;
+#card {
+  view-transition-name: card;
   a {
     view-transition-name: link;
   }
 }
-::view-transition-group(content) {
+::view-transition-group(card) {
   animation-duration: 800ms;
 }
 
@@ -60,6 +69,10 @@ b {
 
 
 
+/* Some fancy text animation to avoid default text morph:
+slide the old image out and at the same time, with a short delay, slide the new image in.
+Clip the images at the group pseudo-element so they do not overflow the area.
+ */
 
 h2 {
   view-transition-name: subtitle;

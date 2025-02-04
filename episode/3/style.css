@@ -16,6 +16,8 @@ main {
 
 nav {
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a {
@@ -36,7 +38,7 @@ h2 {
   display: inline-block;
 }
 
-.content {
+.card {
   background: light-dark(#ffffff, #242424);
   padding: 2rem;
   border-radius: 8px;
@@ -44,7 +46,7 @@ h2 {
 }
 
 
-.content img.small {
+.card img.small {
   width: 200px;
   height: auto;
   float: right;

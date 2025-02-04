@@ -1,3 +1,5 @@
+/* This enables same-origin, cross-document view transitions
+for supporting browsers if the user doesn't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;

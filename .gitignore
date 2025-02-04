@@ -3,6 +3,7 @@ keep
 solved
 bin/video
 bin/solved
+bin/save
 public/inspection-chamber.js
 tests
 videos

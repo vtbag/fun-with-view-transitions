@@ -1,39 +1,47 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Episode 3 - Page 2</title>
-    <link rel="expect" href="#content" blocking="render" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="view-transition.css" />
-    <script type="speculationrules">
+<html lang="en" class="page2">
+
+<head>
+
+  <script src="/inspection-chamber.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode 4 - Page 2</title>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="expect" href="#main" blocking="render" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view-transition.css" />
+  <script type="speculationrules">
       {
         "prerender": [
           {
-            "urls": [
-              "/episode/4/page1.html",
-              "/episode/4/page2.html"
-            ]
+            "urls": ["/episode/4/page1.html", "/episode/4/page2.html"]
           }
         ]
       }
     </script>
-  </head>
-  <body>
-    <main id="main">
-      <nav>
-        <a href="/index.html">← Back to Examples</a>
-      </nav>
-      <img id="fish" class="right" src="/assets/fish.webp" alt="a fish" />
-      <h1>Make Your Images Glide Across the Screen!</h1>
-      <div id="content" class="content small">
-        <h2>Page Two</h2>
-        <p>Watch how smoothly we transitioned to this page!</p>
-        <a href="page1.html" class="next-button"><b class="arrow">🢀</b> Back to Page One</a>
-      </div>
+</head>
 
-      <img id="whiteboard" src="/assets/whiteboard.webp" alt="White board" />
-    </main>
-  </body>
+<body>
+  <main id="main">
+    <nav>
+      <a href="/index.html">← All exercises</a><a href="https://vtbag.dev/fwvt/healing/">Episode 4 →</a>
+    </nav>
+    <h1>The Morphology Clinic: Advanced Treatments for Strange Text Animations!</h1>
+
+    <p class="desc2">This is the short description of the article.</p>
+    <div id="card" class="card">
+      <h2>Page Two</h2>
+      <p><span class="content2">More content will be added here</span> <span class="here2">soon.</span></p>
+      <p>Back to <a href="page1.html">Page One</a></p>
+    </div>
+  </main>
+  <script>
+    sessionStorage.setItem("vtbag-ui-reopener-position", `{"reopenerLeft":"${window.innerWidth / 2 - 40}px","reopenerTop":"20px"}`);
+    localStorage.setItem("vtbag-tutorial-mode", "false")
+  </script>
+
+</body>
+
 </html>

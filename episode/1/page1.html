@@ -1,38 +1,43 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Episode 1 - Page 1</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="view-transition.css" />
-  </head>
-  <body>
-    <main>
-      <nav>
-        <a href="/index.html">← Back to Examples</a>
-      </nav>
-      <h1>Ladies and Gentlemen, Start Your Engines!</h1>
-      <div id="content" class="content">
-        <h2>Page One</h2>
-        <p>This example has two pages but no view transitions yet.</p>
-        <p>Edit the <code>view-transition.css</code> file to</p>
-        <ul>
-          <li>
-            add the view transition at-rule that enables cross document view
-            transitions
-          </li>
-          <li>add a media query to respect requests for reduced motion</li>
-        </ul>
-        <p>Optional, edit <code>page1.html</code> and <code>page2.html</code> to</p>
-        <ul>
-          <li>
-            add the link element that ensures that the relevant content is loaded
-            before the view transition starts
-          </li>
-        </ul>
-        <a href="page2.html" class="next-button">Go to Page Two →</a>
-      </div>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode 1 - Page 1</title>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view-transition.css" />
+</head>
+
+<body>
+  <main id="main">
+    <nav>
+      <a href="/index.html">← All exercises</a><a href="https://vtbag.dev/fwvt/enabling/">Episode 1 →</a>
+    </nav>
+    <h1>Ladies and Gentlemen, Start Your Engines!</h1>
+    <div id="card" class="card">
+      <h2>Page One</h2>
+      <p>This example has two pages but no view transitions yet.</p>
+      <p>Edit the <code>view-transition.css</code> file to</p>
+      <ul>
+        <li>
+          add the view transition at-rule that enables cross document view
+          transitions
+        </li>
+        <li>add a media query to respect requests for reduced motion</li>
+      </ul>
+      <p>Optional, edit <code>page1.html</code> and <code>page2.html</code> to</p>
+      <ul>
+        <li>
+          add the link element that ensures that the relevant content is loaded
+          before the view transition starts
+        </li>
+      </ul>
+      <a href="page2.html" class="next-button">Go to Page Two →</a>
+    </div>
+  </main>
+</body>
+
 </html>

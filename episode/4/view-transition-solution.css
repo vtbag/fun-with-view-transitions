@@ -1,85 +1,161 @@
+/* This enables same-origin, cross-document view transitions
+for supporting browsers if the user doesn't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
 }
 
+/* a single definition to slow down all animations */
+::view-transition-group(*) {
+  animation-duration: 250ms;
+}
 
-::view-transition-old(root) {
-  animation-duration: 600ms;
+/* quickly hide the background and reveal the new one only near the end of the navigation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 80ms;
+  animation-fill-mode: both;
 }
 ::view-transition-new(root) {
-  animation: 600ms 400ms both slide-up linear(0, 1.2 50%, 0.8 75%, 1);
-}
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(10vh);
-  }
+  animation-delay: 170ms;
 }
 
-
-
-/* --- */
-
-#whiteboard {
-  view-transition-name: whiteboard;
-}
-
+/* Name elements for view transitions */
 nav {
   view-transition-name: nav;
 }
 
-
-#fish {
-  view-transition-name: fish;
-}
-::view-transition-group(fish) {
-  animation-duration: 800ms;
+.page1 h3,
+.page2 h1 {
+  view-transition-name: header;
 }
 
+.page2 h2,
+.page1 .card a {
+  view-transition-name: page2;
+}
 
-#content {
+.desc1,
+.desc2 {
+  view-transition-name: description;
+}
+
+.content1,
+.content2 {
   view-transition-name: content;
-  a {
-    view-transition-name: link;
-  }
-}
-::view-transition-group(content) {
-  animation-duration: 800ms;
 }
 
-
-b {
-  view-transition-name: arrow;
+.here1,
+.here2 {
+  view-transition-name: here;
 }
 
-::view-transition-group(arrow) {
-  animation-duration: 1000ms;
+/* Add some fancy glow during the transition */
+::view-transition-image-pair(here) {
+  border-radius: 0 8px 8px 0;
 }
-
-
-
-
-h2 {
-  view-transition-name: subtitle;
+::view-transition-image-pair(content) {
+  border-radius: 8px 0 0 8px;
 }
-::view-transition-group(subtitle) {
-  overflow: hidden;
+::view-transition-image-pair(here),
+::view-transition-image-pair(content) {
+  animation-name: glow;
+  animation-duration: inherit;
 }
-::view-transition-old(subtitle) {
-  animation: turn-out 500ms linear both;
-}
-::view-transition-new(subtitle) {
-  animation: turn-in 500ms 100ms linear both;
-}
-@keyframes turn-out {
+@keyframes glow {
+  from,
   to {
-    transform: translateX(-100%);
+    box-shadow: 0 0 0 #0000;
+    border-color: #0000;
+  }
+  50% {
+    box-shadow: 0px 0px 10px #8888;
+    border-color: #8008;
   }
 }
-@keyframes turn-in {
-  from {
-    transform: translateX(100%);
+
+/* Fix the link by forcing same aspect ration on both images, i.e. making the heading just as wide as the text */
+.page2 h2 {
+  display: inline-block;
+}
+/* Optionally adjust sizes, but dows not make much difference compared to the default being height: auto */
+::view-transition-old(page2),
+::view-transition-new(page2) {
+  height: 100%;
+}
+
+/* Fix the description */
+::view-transition-old(description),
+::view-transition-new(description) {
+  height: 100%;
+  width: auto;
+}
+
+/* Fix the content by making the old and the new image same hight
+(both are single lines) and let the width adjust to keep the original aspect ratio.
+Only use the generated -ua-view-transition-group-anim-content animation but disable fading */
+::view-transition-old(content),
+::view-transition-new(content) {
+  animation: none;
+  height: 100%;
+  width: auto;
+}
+/* Do not let the content overflow the animation group */
+::view-transition-image-pair(content) {
+  overflow: clip;
+}
+/* Drop the images for the shorter versions */
+.page2::view-transition-old(content) {
+  display:none;
+}
+.page1::view-transition-new(content) {
+  display:none;
+}
+
+
+/* Fix the header by shrinking the one line text or enlarging the two line text to fit the other */
+::view-transition-old(header),
+::view-transition-new(header) {
+  height: 100%;
+  width: auto;
+}
+/* When going from Page 1 to Page 2
+keep the browser generated fade-out, but add a shrink animation to the old one line image */
+:root.page2::view-transition-old(header) {
+  animation-name:
+    -ua-view-transition-fade-out,
+    shrink;
+}
+/* When navigating from Page 2 to Page 1
+keep the browser generated fade-in but add a grow animation the new two line image */
+:root.page1::view-transition-new(header) {
+  animation-name:
+    -ua-view-transition-fade-in,
+    grow;
+}
+::view-transition-group(header) {
+  animation-timing-function: ease-in-out;
+}
+@keyframes grow {
+  0% {
+    height: 50%;
+  }
+  80% {
+    height: 50%;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes shrink {
+  0% {
+    height: 100%;
+  }
+  20% {
+    height: 50%;
+  }
+  to {
+    height: 50%;
   }
 }
