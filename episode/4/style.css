@@ -1,9 +1,10 @@
 :root {
   color-scheme: light dark;
-  text-wrap: balance;
   hyphens: auto;
 }
-
+h1,h2,h3,h4,h5,h6 {
+  text-wrap: balance;
+}
 @media (max-width: 500px) {
   :root {
     font-size: 0.7rem;

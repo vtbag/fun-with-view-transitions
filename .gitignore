@@ -1,26 +1,13 @@
-keep
 
+node_modules
+tests
+test-results
+playwright.config.ts
+dist
+videos
+list
 solved
 bin/video
 bin/solved
 bin/save
 public/inspection-chamber.js
-tests
-videos
-list
-test-results
-playwright.config.ts
-
-node_modules
-dist
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?

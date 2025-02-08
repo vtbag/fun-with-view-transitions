@@ -33,7 +33,7 @@
 
     <div id="card" class="card">
       <h3>The Morphology Clinic</h3>
-      <p class="desc1">This is the short description of the article.</p>
+      <p class="desc1">This is a short description of the article.</p>
       <p><span class="content1">More content</span> <span class="here1">soon.</span></p>
       <p>Goto <a href="page2.html">Page Two</a></p>
     </div>
@@ -43,11 +43,21 @@
     <p></p>
     <ul>
       <li>
-        Use the devTools' animation panel and the Inspection Chamber to put the
-        animations through their paces.
-      </li>
+        Use the Inspection Chamber (or alternatively the browser's developer tools) to put the
+        animations through their paces.<details open><summary>Here is a short introduction</summary>
+        <ul>
+          <li>Press this button → <button id="open" style="cursor:pointer">Open / Close</button> to open or close the Chamber</li>
+          <li>Use the Chamber's crossed arrows buttons (⤭) at the right top or bottom to change its orientation</li>
+          <li>Select "Full Control" from the mode menu</li>
+          <li>Start the view transition by clicking the "Page Two" link in the main window</li>
+          <li>Use the Chamber's upper slider to&hellip; slide through the animations</li>
+          <li>Exit the inspection mode by clicking the [Exit] button of the Full Control panel</li>
+          <li>Read the <a
+            href="https://vtbag.dev/tools/inspection-chamber/">documentation</a> on how to frame and selectively hide pseudo-elements. And much more.</li>
+        </ul>
+      </details></li>
       <li>
-        Improve the morph effects by fixing the CSS.
+        Improve the morph effects by fixing the CSS as explained in <a href="htps://vtbag.dev/fwvt/healing/">this episode</a> of <i>Fun With View Transitions</i>.
       </li>
     </ul>
     <p>
@@ -56,7 +66,13 @@
   </main>
   <script>
     sessionStorage.setItem("vtbag-ui-reopener-position", `{"reopenerLeft":"${window.innerWidth / 2 - 40}px","reopenerTop":"20px"}`);
-    localStorage.setItem("vtbag-tutorial-mode", "false")
+    localStorage.setItem("vtbag-tutorial-mode", "false");
+    document.getElementById("open").addEventListener("click", () => {
+      top.sessionStorage.setItem("vtbag-ui-standby",
+        top.sessionStorage.getItem("vtbag-ui-standby") === "true" ? "false" : "true"
+      );
+      top.location.reload();
+    });
   </script>
 
 </body>

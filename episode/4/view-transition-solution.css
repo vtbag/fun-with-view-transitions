@@ -29,6 +29,7 @@ nav {
 .page1 h3,
 .page2 h1 {
   view-transition-name: header;
+  display: inline-block;
 }
 
 .page2 h2,
@@ -75,15 +76,11 @@ nav {
   }
 }
 
-/* Fix the link by forcing same aspect ration on both images, i.e. making the heading just as wide as the text */
+/* Fix the link by forcing same aspect ratio on both images, i.e. making the heading just as wide as the text */
 .page2 h2 {
   display: inline-block;
 }
-/* Optionally adjust sizes, but dows not make much difference compared to the default being height: auto */
-::view-transition-old(page2),
-::view-transition-new(page2) {
-  height: 100%;
-}
+
 
 /* Fix the description */
 ::view-transition-old(description),
@@ -105,7 +102,7 @@ Only use the generated -ua-view-transition-group-anim-content animation but disa
 ::view-transition-image-pair(content) {
   overflow: clip;
 }
-/* Drop the images for the shorter versions */
+/* Drop the images of the shorter versions */
 .page2::view-transition-old(content) {
   display:none;
 }
@@ -122,17 +119,13 @@ Only use the generated -ua-view-transition-group-anim-content animation but disa
 }
 /* When going from Page 1 to Page 2
 keep the browser generated fade-out, but add a shrink animation to the old one line image */
-:root.page2::view-transition-old(header) {
-  animation-name:
-    -ua-view-transition-fade-out,
-    shrink;
+.page2::view-transition-old(header) {
+  animation-name: -ua-view-transition-fade-out, shrink;
 }
 /* When navigating from Page 2 to Page 1
 keep the browser generated fade-in but add a grow animation the new two line image */
-:root.page1::view-transition-new(header) {
-  animation-name:
-    -ua-view-transition-fade-in,
-    grow;
+.page1::view-transition-new(header) {
+  animation-name: -ua-view-transition-fade-in, grow;
 }
 ::view-transition-group(header) {
   animation-timing-function: ease-in-out;
