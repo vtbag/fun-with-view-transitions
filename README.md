@@ -1,6 +1,6 @@
 # Fun with View Transitions
 
-This repo contains examples to follow along with the _Fun with View Transitions_ [episodes](https://vtbag.dev/fwvt/welcome/) on https://vtbag.dev/fwvt/welcome/.
+This repo contains examples to follow along with the _Fun with View Transitions_ episodes on https://vtbag.dev/fwvt/welcome/.
 
 Don't try to run these examples in a Web-IDE like StacklBlitz, CodePen or Codespace when they require real cross-document navigation.
 
