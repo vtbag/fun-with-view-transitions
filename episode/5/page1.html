@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" class="page1">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode 5</title>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="expect" href="#main" blocking="render" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="view-transition.css" />
+  <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "urls": ["/episode/5/page1.html", "/episode/5/page1.html"]
+          }
+        ]
+      }
+    </script>
+</head>
+
+<body>
+  <main id="main">
+    <nav>
+      <a href="/index.html">← All exercises</a><a href="https://vtbag.dev/fwvt/twinkling/">Episode 5 →</a>
+    </nav>
+    <div id="card" class="card">
+      <h1>Adding View Transitions to Your Starlight Site</h1>
+      <p>The exercise site of this episode of <i>Fun With View Transitions</i> is a bit bigger. It is a real Starlight site.</p>
+      <p><b>See how to set it up on Starlight's <a href="https://starlight.astro.build/getting-started/#create-a-new-project">Getting Started</a> page.</b></p>
+      <p>You can then follow along the single steps from <a href="https://vtbag.dev/fwvt/twinkling/">Episode 5</a>, or you just add the <a href="https://events-3bg.pages.dev/library/StarlightPlugin/">Starlight Plugin</a> that will do it all for you.</p>
+      <p><b>Caution:</b>If you only want a cross-fade effect for the whole viewport, just <a href="https://events-3bg.pages.dev/library/StarlightPlugin/#simple-alternative-just-whole-viewport-cross-fade">enable basic view transitions</a> and visit <a href="https://vtbag.dev/fwvt/enabling/">Episode 1</a> if you are looking for  some background information.</p>
+    </div>
+  </main>
+</body>
+
+</html>

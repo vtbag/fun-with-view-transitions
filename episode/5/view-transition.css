@@ -1,0 +1,77 @@
+/* This enables same-origin, cross-document view transitions
+for supporting browsers if the user doesn't prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* a single definition to slow down all animations */
+::view-transition-group(*) {
+  animation-duration: 250ms;
+}
+
+/* quickly hide the background and reveal the new one only near the end of the navigation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 80ms;
+  animation-fill-mode: both;
+}
+::view-transition-new(root) {
+  animation-delay: 170ms;
+}
+
+/* Name elements for view transitions */
+nav {
+  view-transition-name: nav;
+}
+
+.page1 h3,
+.page2 h1 {
+  view-transition-name: header;
+  display: inline-block;
+}
+
+.page2 h2,
+.page1 .card a {
+  view-transition-name: page2;
+}
+
+.desc1,
+.desc2 {
+  view-transition-name: description;
+}
+
+.content1,
+.content2 {
+  view-transition-name: content;
+}
+
+.here1,
+.here2 {
+  view-transition-name: here;
+}
+
+/* Add some fancy glow during the transition */
+::view-transition-image-pair(here) {
+  border-radius: 0 8px 8px 0;
+}
+::view-transition-image-pair(content) {
+  border-radius: 8px 0 0 8px;
+}
+::view-transition-image-pair(here),
+::view-transition-image-pair(content) {
+  animation-name: glow;
+  animation-duration: inherit;
+}
+@keyframes glow {
+  from,
+  to {
+    box-shadow: 0 0 0 #0000;
+    border-color: #0000;
+  }
+  50% {
+    box-shadow: 0px 0px 10px #8888;
+    border-color: #8008;
+  }
+}

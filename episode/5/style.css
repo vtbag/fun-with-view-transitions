@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light dark;
+  hyphens: auto;
+}
+h1,h2,h3,h4,h5,h6 {
+  text-wrap: balance;
+}
+@media (max-width: 500px) {
+  :root {
+    font-size: 0.7rem;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: light-dark(#f8f9fa, #1a1a1a);
+  color: light-dark(#213547, #ffffff);
+  line-height: 1.6;
+  scrollbar-gutter: stable;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+nav {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  color: light-dark(#646cff, #a5a9ff);
+  text-decoration: none;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+h3 {
+  color: light-dark(#34883c, #a5ffa9);
+}
+
+.card {
+  background: light-dark(#ffffff, #242424);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: min(63vw, 720px);
+  margin: 0 auto;
+}
+.content1,
+.content2 {
+  padding: 1ex 0 1ex 1ex;
+}
+.here1,
+.here2 {
+  padding: 1ex 1ex 1ex 0;
+}
