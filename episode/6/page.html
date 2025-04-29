@@ -20,13 +20,14 @@
   <div id="page1">
     <p>Clicking this button on desktop should start a cross-fade animation.</p>
     <button id="fails">Start</button>
-    <p>Mysteriously, it does not work on mobile.</p>
+    <p>Mysteriously, it does not work with Chromium browsers on mobile.</p>
+    <p>(On desktop, open devtools and select mobile emulation)</p>
   </div>
   <p id="log"></p>
 
 
   <script>
-  log.innerText = "" + innerWidth + ", " + innerHeight;
+  log.innerText = "Layout viewport: " + innerWidth + " x " + innerHeight;
     fails.addEventListener("click", () =>
       document.startViewTransition(() => {
         page1.outerHTML = `
@@ -37,7 +38,7 @@
   </p>
 </div></main>`;
       }).finished.finally(() =>
-        log.innerText = "" + innerWidth + ", " + innerHeight
+        log.innerText = "Layout viewport: " + innerWidth + " x " + innerHeight
       )
     );
     document.startViewTransition || (document.body.innerHTML = `

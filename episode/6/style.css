@@ -19,8 +19,7 @@ button {
   border-radius: 15px;
   padding: 1rem;
   cursor: pointer;
-  margin-inline: 25vw;
-  display: inline-block;
+  margin-inline: 30vw;
 }
 
 p:first-child {
@@ -48,10 +47,7 @@ nav a {
   margin-inline: 3vw;
 }
 
-body {
-  max-width: 100%;
-  overflow: clip;
-}
+
 main {
   overflow:visible;
 }
