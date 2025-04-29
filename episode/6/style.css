@@ -1,0 +1,57 @@
+:root {
+  color-scheme: light dark;
+  background: linear-gradient(
+    to bottom,
+    light-dark(#fff, #000),
+    light-dark(#fff, #000),
+    light-dark(#000, #fff)
+  );
+  font-family: "Special Elite";
+  padding: 0 2em;
+}
+
+:root,
+button {
+  font-size: 3vw;
+}
+
+button {
+  border-radius: 15px;
+  padding: 1rem;
+  cursor: pointer;
+  margin-inline: 25vw;
+  display: inline-block;
+}
+
+p:first-child {
+  margin-top: 10vh;
+}
+
+::view-transition-group(*) {
+  animation-duration: 2s;
+}
+
+#page1 {
+  /* placeholder */
+}
+#page2 {
+  padding-right: 10em;
+  width: 100%;
+}
+
+
+
+nav a {
+  display: inline-block;
+  color: light-dark(#646cff, #a5a9ff);
+  text-decoration: none;
+  margin-inline: 3vw;
+}
+
+body {
+  max-width: 100%;
+  overflow: clip;
+}
+main {
+  overflow:visible;
+}
