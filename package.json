@@ -13,5 +13,8 @@
     "glob": "^11.0.1",
     "vite": "^6.1.1",
     "vite-plugin-static-copy": "^2.2.0"
+  },
+  "dependencies": {
+    "@vtbag/utensil-drawer": "^1.2.5"
   }
 }

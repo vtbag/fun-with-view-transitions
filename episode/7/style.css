@@ -1,0 +1,346 @@
+:root {
+  --color-background: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-text: #212529;
+  --color-text-secondary: #495057;
+  --color-primary: #0066cc;
+  --color-primary-hover: #004c99;
+  --color-border: #dee2e6;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-peg: #8d6e63;
+  --color-base: #5d4037;
+
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+
+  --peg-width: 16px;
+  --peg-height: 160px;
+  --disk-height: 24px;
+  --base-height: 20px;
+  --base-width: 250px;
+}
+
+[data-theme="dark"] {
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-text: #e9ecef;
+  --color-text-secondary: #adb5bd;
+  --color-primary: #3a86ff;
+  --color-primary-hover: #2a75f0;
+  --color-border: #343a40;
+  --color-shadow: rgba(128,128,128, 0.3);
+  --color-peg: #6d4c41;
+  --color-base: #4e342e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  max-width: 1000px;
+  width: 100%;
+  padding: var(--space-3);
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.game-controls {
+  display: flex;
+  align-items: end;
+  margin-bottom: var(--space-3);
+  gap: var(--space-2);
+}
+
+
+.control-group {
+  flex: 1;
+  width: fit-content;
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: var(--space-1) var(--space-2);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+#nextStep {
+  float:right;
+}
+
+#reset {
+  text-align: center;
+}
+#theme-toggle {
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: var(--space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-icon.light {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon.dark {
+  display: none;
+}
+
+select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+label {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+#gameBoard {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  transition: margin-top 0.3s;
+  margin: 0px var(--space-4) 0;
+  min-height: 200px;
+  padding: var(--space-2) 0;
+  background-color: var(--color-surface);
+  border-radius: 16px;
+  box-shadow: 0 4px 8px var(--color-shadow);
+}
+.vectors #gameBoard {
+  margin-top: 140px;
+}
+
+.tower {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 200px;
+}
+
+.peg {
+  position: absolute;
+  bottom: var(--base-height);
+  width: var(--peg-width);
+  height: var(--peg-height);
+  background-color: var(--color-peg);
+  border-radius: 4px 4px 0 0;
+  z-index: 1;
+}
+
+.tower::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: var(--base-width);
+  height: var(--base-height);
+  background-color: var(--color-base);
+  border-radius: 4px;
+}
+
+.disks {
+  position: absolute;
+  bottom: var(--base-height);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  z-index: 2;
+}
+
+.disk {
+  height: var(--disk-height);
+  border-radius: 4px;
+  margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.progress-container {
+  margin-bottom: var(--space-3);
+}
+
+.progress-text {
+  margin-bottom: var(--space-1);
+  font-weight: 500;
+}
+
+.progress-bar {
+  height: 12px;
+  outline: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#progressFill {
+  height: 100%;
+  background-color: var(--color-primary);
+  width: 0;
+}
+
+#resetMessage {
+  text-align: center;
+  padding: var(--space-4);
+}
+#completionMessage {
+  text-align: center;
+  background-color: var(--color-surface);
+  padding: var(--space-3);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  margin-top: var(--space-4);
+}
+
+#completionMessage h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+#completionMessage p {
+  margin-bottom: var(--space-3);
+}
+
+#playAgain {
+  padding: var(--space-1) var(--space-3);
+}
+
+.hidden {
+  display: none;
+}
+
+.disk-1 {
+  background-color: #ff6b6b;
+  width: calc(var(--peg-width) * 2);
+}
+.disk-2 {
+  background-color: #f8a048;
+  width: calc(var(--peg-width) * 3);
+}
+.disk-3 {
+  background-color: #ffd166;
+  width: calc(var(--peg-width) * 4);
+}
+.disk-4 {
+  background-color: #06d6a0;
+  width: calc(var(--peg-width) * 5);
+}
+.disk-5 {
+  background-color: #118ab2;
+  width: calc(var(--peg-width) * 6);
+}
+.disk-6 {
+  background-color: #073b4c;
+  width: calc(var(--peg-width) * 7);
+}
+
+h1 {
+  padding-left: 60px
+}
+
+ol {
+  list-style: inside decimal;
+  padding: 1em;
+}
+li {
+  padding: var(--space-1);
+  box-shadow: 0 2px 4px var(--color-shadow);
+}
+code {
+  font-size: 17px;
+  font-family: monospace;
+  background-color: var(--color-border);
+  padding: 0 0.2em;
+  border-radius: 4px;
+}
+
+@media (orientation: portrait) {
+  :root {
+    --peg-height: 140px;
+    --disk-height: 20px;
+    --base-width: 90%;
+  }
+
+  #gameBoard {
+    flex-direction: column;
+    height: auto;
+    min-height: 500px;
+    align-items: center;
+    margin-top: 0;
+  }
+  .vectors #gameBoard {
+    margin-top: 0px;
+  }
+
+  .tower {
+    width: 100%;
+    margin-bottom: var(--space-4);
+    height: 160px;
+  }
+
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

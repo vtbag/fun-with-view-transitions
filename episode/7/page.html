@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    const theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.style.colorScheme = theme;
+    document.documentElement.setAttribute("data-theme", theme);
+  </script>
+  <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
+  <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <meta name="viewport" content="width=device-width, minimum-scale=0.5, initial-scale=1.0" />
+  <title>Tower of Hanoi | @vtbag Fun with View Transitions</title>
+  <link rel="canonical" href="https://fun-with-view-transitions.pages.dev/episode/7/page.html" />
+  <meta property="og:title" content="The Chaining Demo" />
+  <meta property="og:url" content="https://fun-with-view-transitions.pages.dev/episode/7/page.html" />
+  <meta property="og:locale" content="en" />
+  <meta property="og:description" content="Surprisingly rich: a view transition demo that digs into the details." />
+  <meta property="og:site_name" content="@vtbag" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Surprisingly rich: a view transition demo that digs into the details." />
+  <meta property="og:image" content="/hanoi-og.png" />
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./view-transition.css">
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <h1>Tower of Hanoi</h1>
+      <button id="toggleButton" aria-label="Toggle dark mode">
+        <span class="theme-icon light">☀️</span>
+        <span class="theme-icon dark">🌙</span>
+      </button>
+    </header>
+
+    <div class="game-controls">
+      <div class="control-group">
+        <label for="viewTransitions">View Transitions:</label>
+        <select id="viewTransitions">
+          <option value="none">none</option>
+          <option value="vanilla">vanilla</option>
+          <option value="chained">chained</option>
+          <option value="vectors">&hellip;with vectors</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <button id="nextStep">Next Step</button>
+      </div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-text">Step: <span id="currentStep">0</span> / <span id="totalSteps">0</span></div>
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
+    </div>
+
+    <div id="gameBoard">
+      <div class="tower" id="tower-1">
+        <div class="peg"></div>
+        <div class="disks"></div>
+      </div>
+      <div class="tower" id="tower-2">
+        <div class="peg"></div>
+        <div class="disks"></div>
+      </div>
+      <div class="tower" id="tower-3">
+        <div class="peg"></div>
+        <div class="disks"></div>
+      </div>
+    </div>
+
+    <div id="completionMessage" class="hidden">
+      <h2>Puzzle Solved!</h2>
+      <p>Congratulations! You've completed the Tower of Hanoi puzzle.</p>
+      <button id="playAgain">Play Again</button>
+    </div>
+    <div id="resetMessage">
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
