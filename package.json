@@ -8,13 +8,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
+    "@playwright/test": "^1.52.0",
     "@vtbag/inspection-chamber": "^1.0.21",
-    "glob": "^11.0.1",
-    "vite": "^6.1.1",
-    "vite-plugin-static-copy": "^2.2.0"
+    "glob": "^11.0.2",
+    "vite": "^6.3.5",
+    "vite-plugin-static-copy": "^3.0.0"
   },
   "dependencies": {
-    "@vtbag/utensil-drawer": "^1.2.5"
+    "@vtbag/utensil-drawer": "^1.2.7"
   }
 }
