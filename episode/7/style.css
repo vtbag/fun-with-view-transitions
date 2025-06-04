@@ -140,7 +140,8 @@ button:hover {
 }
 
 select {
-  padding: 8px;
+  field-sizing: content;
+  padding: 4px 8px;
   border-radius: 8px;
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);

@@ -1,7 +1,4 @@
-import {
-  mayStartViewTransition,
-  fakeViewTransition,
-} from "@vtbag/utensil-drawer/may-start-view-transition";
+import { mayStartViewTransition } from "@vtbag/utensil-drawer/may-start-view-transition";
 
 export function updateProgressUI(current, total) {
   currentStep.textContent = current;
@@ -25,4 +22,3 @@ export function updateProgressUI(current, total) {
     progressFill.style.backgroundColor = `hsl(212, 60.20%, 54.70%)`;
   }
 }
-
