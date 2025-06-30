@@ -1,84 +1,66 @@
+/* Due to th star selector this targets all group animations.
+ * Due to the default inheritance, it also trickles down the tree 
+ * to the entry and exit animations of the old and new pseudo elements.
+ */
 ::view-transition-group(*) {
   animation-duration: 1s;
 }
 
-:root.vectors::view-transition-group(*) {
-  animation-duration: 1.2s;
-}
+/* To keep unnamed buttons interactive, 
+ * remove root group and allow clicks to go through the view transition layer.
+ * Also do not distract by clicks selecting text */
 :root {
-  --vtbag-theme-toggle-duration: 1s;
-
-  scrollbar-gutter: stable;
-}
-:active-view-transition-type(themeToggle) {
-  &::view-transition-group(*) {
-    animation-duration: var(--vtbag-theme-toggle-duration);
-  }
-  &::view-transition-group(root) {
-    animation-duration: 0.6s;
-  }
-}
-:root {
+  view-transition-name: none;
   user-select: none;
 }
 ::view-transition {
   pointer-events: none;
 }
-::view-transition-group(.disk) {
-  animation-timing-function: ease-in-out;
-  perspective: 50cm;
-}
 
-:root.vectors::view-transition-image-pair(.disk) {
-  animation-timing-function: inherit;
-  animation-name: lift-and-shift;
-}
-:root.vectors:active-view-transition-type(
-    themeToggle
-  )::view-transition-image-pair(.disk) {
-  animation-name: lift;
-}
-::view-transition-old(.disk),
-::view-transition-new(.disk) {
-  animation-name: none;
-}
-::view-transition-new(.disk) {
-  display: none;
-}
-
-:active-view-transition-type(chained) {
-  &::view-transition-old(bar),
-  &::view-transition-new(bar) {
+/** Moving the disks **/
+/*  When animating the "next" move, name the disks */
+:active-view-transition-type(move) {
+  /* participants: disks, their name being set by JavaScript */
+  /* reducing animations: we won't have entry or exit animations for the disks */
+  &::view-transition-old(.disk),
+  &::view-transition-new(.disk) {
     animation-name: none;
-    mix-blend-mode: soft-light;
+  }
+  /* we do not even need old images. */
+  &::view-transition-old(.disk) {
+    display: none;
+  }
+
+  &::view-transition-group(disk-1) {
+    animation-delay: 0ms;
+  }
+  &::view-transition-group(disk-2) {
+    animation-delay: 20ms;
+  }
+  &::view-transition-group(disk-3) {
+    animation-delay: 40ms;
+  }
+  &::view-transition-group(disk-4) {
+    animation-delay: 60ms;
+  }
+  &::view-transition-group(disk-5) {
+    animation-delay: 80ms;
+  }
+  &::view-transition-group(disk-6) {
+    animation-delay: 100ms;
   }
 }
 
-::view-transition-old(message):only-child {
-  animation-name: message-out;
-}
-::view-transition-new(message):only-child {
-  animation-name: message-in;
-}
-
-
-:active-view-transition-type(chained) {
-  &::view-transition-new(step) {
-    animation-name: none;
-    height: 100%;
-    width: auto;
-  }
-  &::view-transition-old(step) {
-    animation-name: none;
-    height: 100%;
-    width: auto;
-    opacity: 0.66;
-    transform: translateY(-1rem);
-    transition: all 0.5s;
+/** moving with vectors **/
+:active-view-transition-type(lift-and-shift) {
+  /* if set, always together with move, see above */
+  &::view-transition-image-pair(.disk) {
+    animation-timing-function: inherit;
+    animation-name: lift-and-shift;
   }
 }
+
 @keyframes lift-and-shift {
-  0%,
   100% {
     transform: translateY(0);
   }
@@ -92,10 +74,8 @@
     );
   }
 }
-
 @media (orientation: portrait) {
   @keyframes lift-and-shift {
-    0%,
     100% {
       transform: translateX(0);
     }
@@ -104,6 +84,121 @@
         calc((var(--vtbag-vector-from-y, 0) - var(--vtbag-vector-to-y, 0)) / 3)
       );
     }
+  }
+}
+
+/** updating the progress bar **/
+:active-view-transition-type(progress) {
+  /* participants: current step, progress bar */
+  #currentStep {
+    view-transition-name: step;
+  }
+  .progress-bar {
+    view-transition-name: bar;
+  }
+  /* stack the old image above the (wider) new image */
+  &::view-transition-old(bar),
+  &::view-transition-new(bar) {
+    animation-name: none;
+    mix-blend-mode: soft-light;
+  }
+  /* no entry or exit animations */
+  &::view-transition-new(step),
+  &::view-transition-old(step) {
+    animation-name: none;
+    height: 100%;
+    width: auto;
+  }
+  /* simple css transform to lift the old (immutable) current step counter
+     above the (dynamically changing) new one */
+  &::view-transition-old(step) {
+    opacity: 0.66;
+    transform: translateY(-1rem);
+    transition: transform 0.5s;
+  }
+}
+
+/** Changing from and to the "with vectors" mode **/
+/*  We use different timings entering and exiting this mode */
+:active-view-transition-type(vectors-toggle) {
+  /* additional participants: game board, completion message, reset buttons */
+  #gameBoard {
+    view-transition-name: board;
+  }
+  #completionMessage {
+    view-transition-name: message;
+  }
+  #reset,
+  #playAgain {
+    view-transition-name: reset;
+    background-color: var(--color-border);
+    cursor: not-allowed;
+  }
+  /* timings when switching from and to vectors */
+  &::view-transition-group(.disk) {
+    animation-timing-function: ease;
+  }
+  &::view-transition-group(message) {
+    animation-timing-function: linear;
+  }
+  &::view-transition-group(board) {
+    animation-timing-function: ease-in-out;
+  }
+  &::view-transition-group(reset) {
+    animation-timing-function: linear(
+      0 0%,
+      -0.1 12.5% 0 25%,
+      1 75%,
+      1.1 87.5%,
+      1 100%
+    );
+  }
+  /* override timings when switching to vectors */
+  &.vectors {
+    &::view-transition-group(.disk) {
+      animation-timing-function: ease-in-out;
+    }
+    &::view-transition-group(board) {
+      animation-timing-function: ease;
+    }
+  }
+}
+
+/** Resetting the game **/
+:active-view-transition-type(reset) {
+  /* participants: completion message, reset buttons */
+  #completionMessage {
+    view-transition-name: message;
+  }
+  /* two different reset buttons with the same name because they are exclusive. */
+  #reset,
+  #playAgain {
+    view-transition-name: reset;
+  }
+  /* view-transition pseudo elements are not interactive.
+     Give the buttons a "disabled" look during view transitions */
+  #reset,
+  #playAgain {
+    background-color: var(--color-border);
+    cursor: not-allowed;
+  }
+  /* let the message stay behind reset buttons */
+  &::view-transition-group(message) {
+    z-index: -1;
+  }
+  /* message entry animation */
+  &::view-transition-new(message):only-child {
+    animation-name: message-in;
+  }
+  /* message exit animation */
+  &::view-transition-old(message):only-child {
+    animation-name: message-out;
+  }
+  /* aspect ratio correction for the reset buttons */
+  &::view-transition-old(reset),
+  &::view-transition-new(reset) {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -120,41 +215,33 @@
   }
 }
 
-:root {
-  view-transition-name: none;
-}
-#currentStep {
-  view-transition-name: step;
-}
+/** Toggle between light and dark theme **/
+:active-view-transition-type(theme-toggle) {
+  /* participants: viewport, game board, disks */
+  /* cross-fade the whole viewport */
+  view-transition-name: root;
 
-.progress-bar {
-  view-transition-name: bar;
-}
-#completionMessage {
-  view-transition-name: message;
-}
-
-#completionMessage button {
-  view-transition-name: reset;
-}
-#resetMessage button {
-  view-transition-name: reset;
-}
-::view-transition-group(reset) {
-  z-index: 1;
-}
-::view-transition-old(reset),
-::view-transition-new(reset) {
-  width: 100%;
-  height: 100%;
-}
-:active-view-transition-type(themeToggle) {
+  /* enable game board animations */
+  #gameBoard {
+    view-transition-name: board;
+  }
+  #reset,
+  #playAgain {
+    view-transition-name: none !important;
+  }
+  /* push the viewport into the background */
+  &::view-transition-group(root) {
+    z-index: -2;
+  }
+  /* move the board to the foreground */
   &::view-transition-group(board) {
     animation-name: popup;
   }
+  /* enable 3D */
   &::view-transition-image-pair(board) {
     perspective: 50cm;
   }
+  /* rotate the board out and in again */
   &::view-transition-old(board),
   &::view-transition-new(board) {
     animation-name: turn-out;
@@ -165,45 +252,15 @@
   &::view-transition-new(board) {
     animation-name: turn-in;
   }
-  &::view-transition-new(root),
-  &::view-transition-old(root),
-  &::view-transition-new(step),
-  &::view-transition-old(step) {
-    animation-delay: var(--vtbag-theme-toggle-duration);
-    animation-fill-mode: both;
-  }
-  &::view-transition-new(bar),
-  &::view-transition-old(bar) {
-    animation-name: none;
-  }
-  &::view-transition-old(step) {
-    opacity: unset;
-    transform: unset;
-    transition: unset;
-  }
 }
-
-@keyframes lift {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  10%,
-  90% {
-    transform: translateY(-250px);
-  }
-}
-
 @keyframes popup {
-  20%,
+  33%,
   80% {
     z-index: 1;
   }
 }
+
 @keyframes turn-out {
-  10% {
-    transform: translateZ(0);
-  }
   20% {
     transform: translateZ(15cm);
   }
@@ -212,7 +269,6 @@
     transform: translateZ(15cm) rotateY(90deg);
   }
 }
-
 @keyframes turn-in {
   0%,
   50% {
@@ -221,9 +277,6 @@
   80% {
     transform: translateZ(15cm);
   }
-  90% {
-    transform: translateZ(0);
-  }
   100% {
     transform: translateZ(0);
     outline-width: 0;
@@ -231,24 +284,6 @@
 }
 
 @media (orientation: portrait) {
-  :root {
-    --vtbag-theme-toggle-duration: 0.5s;
-  }
-
-  :root.vectors:active-view-transition-type(
-      themeToggle
-    )::view-transition-image-pair(.disk) {
-    /* don't skip */
-    animation-name: none;
-  }
-
-  :active-view-transition-type(themeToggle) {
-    /* don't popup */
-    &::view-transition-group(board) {
-      animation-name: none;
-    }
-  }
-
   @keyframes turn-out {
     50%,
     100% {
@@ -267,15 +302,47 @@
   }
 }
 
+/*** portrait mode ***/
+@media (orientation: portrait) {
+  :active-view-transition-type(theme-toggle) {
+    /* do not move the board to the foreground */
+    &::view-transition-group(board) {
+      animation-name: none;
+    }
+    &::view-transition-image-pair(.disk) {
+      animation-name: lift;
+    }
+    /* stacked lift movement */
+    &::view-transition-image-pair(disk-1) {
+      animation-delay: 0ms;
+    }
+    &::view-transition-image-pair(disk-2) {
+      animation-delay: 50ms;
+    }
+    &::view-transition-image-pair(disk-3) {
+      animation-delay: 100ms;
+    }
+    &::view-transition-image-pair(disk-4) {
+      animation-delay: 150ms;
+    }
+    &::view-transition-image-pair(disk-5) {
+      animation-delay: 200ms;
+    }
+    &::view-transition-image-pair(disk-6) {
+      animation-delay: 250ms;
+    }
+  }
 
-::view-transition-group(disk-5) {
-  animation-delay: 10ms;
-}::view-transition-group(disk-4) {
-  animation-delay: 20ms;
-}::view-transition-group(disk-3) {
-  animation-delay: 30ms;
-}::view-transition-group(disk-2) {
-  animation-delay: 40ms;
-}::view-transition-group(disk-1) {
-  animation-delay: 50ms;
+  :active-view-transition-type(lift-and-shift) {
+    &::view-transition-image-pair(.disk) {
+      animation-name: lift-and-shift;
+    }
+  }
+
+  @keyframes lift {
+    25%,
+    75% {
+      transform: translateY(-20px);
+    }
+  }
 }

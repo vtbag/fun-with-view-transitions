@@ -1,11 +1,13 @@
 :root {
-    color-scheme: light dark;
+  color-scheme: light dark;
   --primary-color: light-dark(#646cff, #a5a9ff);
   --secondary-color: light-dark(#535bf2, #8f94ff);
   --bg-color: light-dark(#f8f9fa, #1a1a1a);
   --text-color: light-dark(#213547, #ffffff);
   --card-bg: light-dark(#ffffff, #242424);
   hyphens: auto;
+  height: 150vh;
+  scrollbar-gutter: stable;
 }
 
 body {

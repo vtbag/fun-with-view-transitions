@@ -5,6 +5,7 @@ export class TowerOfHanoi {
     this.moves = [];
     this.currentStep = 0;
     this.done = false;
+    this.wasDone = undefined;
 
     // Initialize the first peg with all disks
     for (let i = numDisks; i >= 1; i--) {
@@ -29,6 +30,7 @@ export class TowerOfHanoi {
 
   // Execute the next move in the solution
   nextStep() {
+    this.wasDone = this.done;
     if (this.currentStep < this.totalSteps) {
       const move = this.moves[this.currentStep];
       const disk = this.pegs[move.from].pop();
@@ -38,5 +40,17 @@ export class TowerOfHanoi {
         this.done = true;
       }
     }
+  }
+
+  reset() {
+    for (let i = 0; i < this.pegs.length; i++) {
+      this.pegs[i] = [];
+    }
+    for (let i = this.numDisks; i >= 1; i--) {
+      this.pegs[0].push(i);
+    }
+    this.currentStep = 0;
+    this.done = false;
+    this.wasDone = undefined;
   }
 }

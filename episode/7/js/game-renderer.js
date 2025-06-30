@@ -5,20 +5,21 @@ const stack = document.querySelectorAll(".disks");
 
 export function render(pegs) {
   const mode = viewTransitions.value;
-
   if (mode !== "none") {
+    const types = ["move"];
+    if (mode === "vectors") types.push("lift-and-shift");
     const transition = mayStartViewTransition(
-      { update },
+      { update, types },
       {
-        collisionBehavior: mode === "vanilla" ? "skipOld" : "chaining",
-        speedUpWhenChained: 1.1,
+        collisionBehavior: mode === "normal" ? "skipOld" : "chaining",
+        speedUpWhenChained: 1.33,
       }
     );
 
     if (mode === "vectors") {
       transition.ready.then(
         () => {
-          setVectors([{ pattern: "disk-.", props: ["x", "y"] }], "pseudo");
+          setVectors([{ pattern: ".*", props: ["x", "y"] }], "pseudo");
         },
         (e) => {
           console.error("View transition failed:", e);
@@ -30,8 +31,8 @@ export function render(pegs) {
   }
 
   function update() {
-    stack.forEach((stack) => (stack.innerHTML = ""));
     pegs.forEach((peg, pegIndex) => {
+      stack[pegIndex].innerHTML = "";
       peg.forEach((diskSize) => {
         const disk = document.createElement("div");
         disk.className = `disk disk-${diskSize}`;

@@ -7,8 +7,8 @@ export function updateProgressUI(current, total) {
 
   if (mode !== "none") {
     mayStartViewTransition(
-      { update, types: mode === "vanilla" ? [] : ["chained"] },
-      { collisionBehavior: "chained", speedUpWhenChained: 1.1 }
+      { update, types: mode === "normal" ? [] : ["progress"] },
+      { collisionBehavior: "chaining" }
     ).finished.then(
       () =>
         (window.progressFill.style.backgroundColor = `hsl(115, 74.50%, 41.60%)`)

@@ -5,48 +5,64 @@ function setTheme(theme) {
   document.documentElement.style.colorScheme = theme;
 }
 
-function toggleTheme() {
-  nextStep.click();
+async function toggleTheme() {
   const mode = viewTransitions.value;
-
   if (mode !== "none") {
+    mode === "vectors" && [1, 2, 3, 4, 5].forEach(nextStep.click.bind(nextStep));
+    playAgain.disabled =
+      reset.disabled =
+      nextStep.disabled =
+      toggleButton.disabled =
+      viewTransitions.disabled =
+        true;
+
     // save settings
     const vectors = document.documentElement.classList.contains("vectors");
-    const hidden = completionMessage.classList.contains("hidden");
-    // make space
-    document.documentElement.classList.toggle("vectors", true);
-    completionMessage.classList.toggle("hidden", true);
-    // add pseudo-elements
-    document.documentElement.style.viewTransitionName = "root";
-    gameBoard.style.viewTransitionName = "board";
 
-    const transition = mayStartViewTransition(
-      {
-        update,
-        types: ["themeToggle"],
-      },
-      {
-        collisionBehavior: mode === "vanilla" ? "skipOld" : "chaining",
-      }
-    );
+    const landscape = matchMedia("(orientation: landscape)").matches;
+    if (landscape) {
+      await mayStartViewTransition(
+        {
+          update: () => {
+            document.documentElement.classList.toggle("vectors", true);
+            document.querySelectorAll(".disk").forEach((disk) => {
+              disk.style.transform = "translateY(-250px)";
+            });
+            reset.style.transform = "translateY(40px)";
+          },
+          types: ["vectors-toggle"],
+        },
+        { collisionBehavior: "chaining" }
+      ).finished;
+    }
 
-    transition.finished.then(() => {
-      // remove pseudo-elements
-      document.documentElement.style.viewTransitionName =
-        gameBoard.style.viewTransitionName = "";
-      document
-        .querySelectorAll(".disk")
-        .forEach((d) => (d.style.viewTransitionName = ""));
-      mayStartViewTransition(() => {
-        // restore settings
-        completionMessage.classList.toggle("hidden", hidden);
-        document.documentElement.classList.toggle("vectors", vectors);
-      }).ready.then(() => {
-        document
-          .querySelectorAll(".disk")
-          .forEach((d) => (d.style.viewTransitionName = d.classList[1]));
-      });
-    });
+    await mayStartViewTransition(
+      { update, types: ["theme-toggle"] },
+      { collisionBehavior: "chaining" }
+    ).finished;
+
+    if (landscape) {
+      await mayStartViewTransition(
+        {
+          update: () => {
+            // restore settings
+            document.documentElement.classList.toggle("vectors", vectors);
+            document.querySelectorAll(".disk").forEach((disk) => {
+              disk.style.transform = "";
+            });
+            reset.style.transform = "";
+          },
+          types: ["vectors-toggle"],
+        },
+        { collisionBehavior: "chaining" }
+      ).finished;
+    }
+    playAgain.disabled =
+      reset.disabled =
+      nextStep.disabled =
+      toggleButton.disabled =
+      viewTransitions.disabled =
+        false;
   } else {
     update();
   }
