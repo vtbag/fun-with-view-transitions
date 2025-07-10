@@ -7,11 +7,11 @@ export function updateProgressUI(current, total) {
 
   if (mode !== "none") {
     mayStartViewTransition(
-      { update, types: mode === "normal" ? [] : ["progress"] },
+      { update, types: ["progress"] },
       { collisionBehavior: "chaining" }
     ).finished.then(
       () =>
-        (window.progressFill.style.backgroundColor = `hsl(115, 74.50%, 41.60%)`)
+        (progressFill.style.backgroundColor = `hsl(115, 74.50%, 41.60%)`)
     );
   } else {
     return update();

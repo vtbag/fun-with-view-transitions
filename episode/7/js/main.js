@@ -3,6 +3,7 @@ import { updateProgressUI } from "./progress.js";
 import { render } from "./game-renderer.js";
 import { initTheme } from "./theme-manager.js";
 import { mayStartViewTransition } from "@vtbag/utensil-drawer/may-start-view-transition";
+import { setVectors } from "@vtbag/utensil-drawer/vectors";
 
 let game;
 
@@ -10,25 +11,41 @@ nextStep.addEventListener("click", () => play());
 playAgain.addEventListener("click", () => play(true));
 reset.addEventListener("click", () => play(true));
 
-let prevMode = viewTransitions.value;
+let targetMode = viewTransitions.value;
 viewTransitions.addEventListener("change", (e) => {
-  const old = prevMode;
-  prevMode = e.target.value;
-  if (e.target.value !== "vectors" && old !== "vectors") return;
-  mayStartViewTransition(
+  const old = targetMode;
+  targetMode = e.target.value;
+
+  const types = ["mode-toggle"];
+  if (
+    (old === "vectors" && targetMode !== "vectors") ||
+    (old !== "vectors" && targetMode === "vectors")
+  ) {
+    types.push("board-move");
+  }
+  
+  e.target.value = old;
+  types.forEach((t) => document.documentElement.classList.add(t));
+
+  const transition = mayStartViewTransition(
     {
       update: () => {
+        e.target.value = targetMode;
         document.documentElement.classList.toggle(
           "vectors",
           e.target.value === "vectors"
         );
       },
-      types: ["vectors-toggle", "reset"],
+      types,
     },
     { collisionBehavior: "chaining" }
-  ).finished.then(() => {
-    reset.style.viewTransitionName = "";
-  });
+  );
+  transition.ready.then(() =>
+    setVectors([{ pattern: "select", props: ["width"] }], "pseudo")
+  );
+  transition.finished.then(() =>
+    types.forEach((t) => document.documentElement.classList.remove(t))
+  );
 });
 
 function play(reset = false) {
@@ -38,9 +55,8 @@ function play(reset = false) {
   )
     return;
 
-
   game ??= new TowerOfHanoi(6);
-  
+
   reset ? game.reset() : game.nextStep();
 
   window.reset.disabled = game.currentStep === 0;
@@ -60,7 +76,7 @@ function updateCompletion() {
     mayStartViewTransition(
       { update: updateMessage, types: ["reset"] },
       {
-        collisionBehavior:  "chaining",
+        collisionBehavior: "chaining",
       }
     );
   } else {

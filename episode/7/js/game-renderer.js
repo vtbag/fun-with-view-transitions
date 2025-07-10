@@ -8,6 +8,7 @@ export function render(pegs) {
   if (mode !== "none") {
     const types = ["move"];
     if (mode === "vectors") types.push("lift-and-shift");
+    types.forEach((type) => document.documentElement.classList.add(type));
     const transition = mayStartViewTransition(
       { update, types },
       {
@@ -19,13 +20,19 @@ export function render(pegs) {
     if (mode === "vectors") {
       transition.ready.then(
         () => {
-          setVectors([{ pattern: ".*", props: ["x", "y"] }], "pseudo");
+          setVectors(
+            [{ pattern: "^disk-.$", props: ["x", "y"] }],
+            "pseudo"
+          );
         },
         (e) => {
           console.error("View transition failed:", e);
         }
       );
     }
+    transition.finished.then(() =>
+      types.forEach((type) => document.documentElement.classList.remove(type))
+    );
   } else {
     update();
   }

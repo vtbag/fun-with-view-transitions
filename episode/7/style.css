@@ -67,11 +67,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
   padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--color-border);
 }
 
+header + p {
+  margin-bottom: var(--space-2);
+}
 h1 {
   font-size: 2.2rem;
   line-height: 1.2;
@@ -144,15 +147,24 @@ button:disabled {
 }
 
 select {
-  field-sizing: content;
-  padding: 4px 8px;
+  /* field-sizing: content; */
+  padding: 4px 30px 4px 8px;
   border-radius: 8px;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-surface);
+  border: none;
+  outline: none;
   color: var(--color-text);
   font-size: 1rem;
+  appearance: none;
+  background: var(--color-surface)
+    url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M5 8l5 5 5-5"/></svg>')
+    no-repeat right 4px center;
 }
-
+#selectFrame {
+  border-radius: 8px;
+  &:has(select:focus) {
+    outline: solid 1px;
+  }
+}
 label {
   font-weight: 500;
   color: var(--color-text-secondary);
@@ -232,7 +244,7 @@ label {
   font-weight: 500;
 }
 
-.progress-bar {
+#progress-bar {
   height: 12px;
   outline: 1px solid var(--color-border);
   border-radius: 4px;
@@ -301,7 +313,7 @@ label {
 }
 
 h1 {
-  padding-left: 60px;
+  padding-left: 0px;
 }
 
 ol {

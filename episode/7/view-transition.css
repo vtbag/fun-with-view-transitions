@@ -93,7 +93,7 @@
   #currentStep {
     view-transition-name: step;
   }
-  .progress-bar {
+  #progress-bar {
     view-transition-name: bar;
   }
   /* stack the old image above the (wider) new image */
@@ -115,26 +115,93 @@
     opacity: 0.66;
     transform: translateY(-1rem);
     transition: transform 0.5s;
+    @starting-style {
+      transform: translateY(0);
+    }
   }
 }
 
 /** Changing from and to the "with vectors" mode **/
 /*  We use different timings entering and exiting this mode */
-:active-view-transition-type(vectors-toggle) {
-  /* additional participants: game board, completion message, reset buttons */
+:active-view-transition-type(mode-toggle) {
+  /* additional participants: select, game board, completion message, reset buttons */
+  #viewTransitions {
+    view-transition-name: select;
+  }
+  #selectFrame {
+    view-transition-name: selectFrame;
+  }
+  &::view-transition-group(selectFrame) {
+    z-index: 1;
+  }
+  &::view-transition-image-pair(select) {
+    overflow: clip;
+    perspective: 50cm;
+  }
+  &::view-transition-old(select) {
+    transform-origin: center center calc(var(--vtbag-vector-from-width) * -0.5);
+    animation-name: rotate-out;
+    animation-timing-function: ease-in-out;
+  }
+  &::view-transition-new(select) {
+    transform-origin: center center calc(var(--vtbag-vector-from-width) * -0.5);
+    animation-name: rotate-in;
+    animation-timing-function: ease-in-out;
+  }
+}
+@keyframes rotate-out {
+  0% {
+    transform: rotateY(0);
+  }
+  25% {
+    transform: rotateY(-90deg);
+  }
+  50%,
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+@keyframes rotate-in {
+  0% {
+    transform: rotateY(180deg);
+    z-index: -1;
+  }
+  25% {
+    transform: rotateY(90deg);
+  }
+  50%,
+  100% {
+    transform: rotateY(0deg);
+    z-index: 1;
+  }
+}
+
+:active-view-transition-type(board-move) {
   #gameBoard {
     view-transition-name: board;
+    view-transition-class: solid;
   }
   #completionMessage {
+    view-transition-class: solid;
     view-transition-name: message;
   }
   #reset,
   #playAgain {
+    view-transition-class: solid;
     view-transition-name: reset;
     background-color: var(--color-border);
     cursor: not-allowed;
   }
-  /* timings when switching from and to vectors */
+  &::view-transition-old(.solid),
+  &::view-transition-new(.solid) {
+    animation-name: none;
+  }
+  &::view-transition-old(.solid) {
+    display: none;
+  }
+
+  /* some example of different timing functions 
+     when switching from and to vectors */
   &::view-transition-group(.disk) {
     animation-timing-function: ease;
   }
@@ -163,7 +230,6 @@
     }
   }
 }
-
 /** Resetting the game **/
 :active-view-transition-type(reset) {
   /* participants: completion message, reset buttons */
@@ -225,11 +291,7 @@
   #gameBoard {
     view-transition-name: board;
   }
-  #reset,
-  #playAgain {
-    view-transition-name: none !important;
-  }
-  /* push the viewport into the background */
+  /* push the root group into the background */
   &::view-transition-group(root) {
     z-index: -2;
   }
@@ -312,7 +374,7 @@
     &::view-transition-image-pair(.disk) {
       animation-name: lift;
     }
-    /* stacked lift movement */
+    /* staggered lift movement */
     &::view-transition-image-pair(disk-1) {
       animation-delay: 0ms;
     }

@@ -10,16 +10,16 @@
   </script>
   <link rel="shortcut icon" href="/tril.png" type="image/png" media="(prefers-color-scheme: light)">
   <link rel="shortcut icon" href="/trid.png" type="image/png" media="(prefers-color-scheme: dark)">
-  <meta name="viewport" content="width=device-width, minimum-scale=0.5, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0" />
   <title>Tower of Hanoi | @vtbag Fun with View Transitions</title>
   <link rel="canonical" href="https://fun-with-view-transitions.pages.dev/episode/7/page.html" />
-  <meta property="og:title" content="The Chaining Demo" />
+  <meta property="og:title" content="Tower of Hanoi" />
   <meta property="og:url" content="https://fun-with-view-transitions.pages.dev/episode/7/page.html" />
   <meta property="og:locale" content="en" />
-  <meta property="og:description" content="Surprisingly rich: a view transition demo that digs into the details." />
+  <meta property="og:description" content="A gloriously playful episode of Fun With View Transitions that pokes, prods, and plays with a demo stuffed with tips and tricks!"/>
   <meta property="og:site_name" content="@vtbag" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="description" content="Surprisingly rich: a view transition demo that digs into the details." />
+  <meta name="description" content="A gloriously playful episode of Fun With View Transitions that pokes, prods, and plays with a demo stuffed with tips and tricks!" />
   <meta property="og:image" content="/hanoi-og.png" />
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./view-transition.css">
@@ -34,16 +34,19 @@
         <span class="theme-icon dark">🌙</span>
       </button>
     </header>
+    <p>Discover all the details behind this demo in <a href="https://vtbag.dev/fwvt/playing/">Episode 7</a> of <i>Fun With View Transitions</i>!</p>
 
     <div class="game-controls">
       <div class="control-group">
         <label for="viewTransitions">View Transitions:</label>
-        <select id="viewTransitions">
-          <option value="none">none</option>
-          <option value="normal">normal</option>
-          <option value="chaining">chaining</option>
-          <option value="vectors">&hellip;with vectors&nbsp;&nbsp;</option>
-        </select>
+        <span id="selectFrame">
+          <select id="viewTransitions">
+            <option value="none">none</option>
+            <option value="normal">normal</option>
+            <option value="chaining">chaining</option>
+            <option value="vectors">&hellip;with vectors&nbsp;&nbsp;</option>
+          </select>
+        </span>
       </div>
 
       <div class="control-group">
@@ -53,7 +56,7 @@
 
     <div class="progress-container">
       <div class="progress-text">Step: <span id="currentStep">0</span> / <span id="totalSteps">0</span></div>
-      <div class="progress-bar">
+      <div id="progress-bar">
         <div id="progressFill"></div>
       </div>
     </div>

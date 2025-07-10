@@ -30,7 +30,7 @@ async function toggleTheme() {
             });
             reset.style.transform = "translateY(40px)";
           },
-          types: ["vectors-toggle"],
+          types: ["board-move"],
         },
         { collisionBehavior: "chaining" }
       ).finished;
@@ -52,7 +52,7 @@ async function toggleTheme() {
             });
             reset.style.transform = "";
           },
-          types: ["vectors-toggle"],
+          types: ["board-move"],
         },
         { collisionBehavior: "chaining" }
       ).finished;
