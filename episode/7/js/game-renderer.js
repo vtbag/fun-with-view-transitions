@@ -8,12 +8,12 @@ export function render(pegs) {
   if (mode !== "none") {
     const types = ["move"];
     if (mode === "vectors") types.push("lift-and-shift");
-    types.forEach((type) => document.documentElement.classList.add(type));
     const transition = mayStartViewTransition(
       { update, types },
       {
         collisionBehavior: mode === "normal" ? "skipOld" : "chaining",
         speedUpWhenChained: 1.33,
+        useTypesPolyfill: "always"
       }
     );
 
@@ -30,9 +30,6 @@ export function render(pegs) {
         }
       );
     }
-    transition.finished.then(() =>
-      types.forEach((type) => document.documentElement.classList.remove(type))
-    );
   } else {
     update();
   }

@@ -8,10 +8,12 @@ export function updateProgressUI(current, total) {
   if (mode !== "none") {
     mayStartViewTransition(
       { update, types: ["progress"] },
-      { collisionBehavior: "chaining" }
+      {
+        collisionBehavior: "chaining",
+        useTypesPolyfill: "always",
+      }
     ).finished.then(
-      () =>
-        (progressFill.style.backgroundColor = `hsl(115, 74.50%, 41.60%)`)
+      () => (progressFill.style.backgroundColor = `hsl(115, 74.50%, 41.60%)`)
     );
   } else {
     return update();

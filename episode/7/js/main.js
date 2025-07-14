@@ -23,9 +23,8 @@ viewTransitions.addEventListener("change", (e) => {
   ) {
     types.push("board-move");
   }
-  
+
   e.target.value = old;
-  types.forEach((t) => document.documentElement.classList.add(t));
 
   const transition = mayStartViewTransition(
     {
@@ -38,13 +37,10 @@ viewTransitions.addEventListener("change", (e) => {
       },
       types,
     },
-    { collisionBehavior: "chaining" }
+    { collisionBehavior: "chaining", useTypesPolyfill: "always" }
   );
   transition.ready.then(() =>
     setVectors([{ pattern: "select", props: ["width"] }], "pseudo")
-  );
-  transition.finished.then(() =>
-    types.forEach((t) => document.documentElement.classList.remove(t))
   );
 });
 
@@ -77,6 +73,7 @@ function updateCompletion() {
       { update: updateMessage, types: ["reset"] },
       {
         collisionBehavior: "chaining",
+        useTypesPolyfill: "always",
       }
     );
   } else {
