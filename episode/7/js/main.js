@@ -37,7 +37,7 @@ viewTransitions.addEventListener("change", (e) => {
       },
       types,
     },
-    { collisionBehavior: "chaining", useTypesPolyfill: "always" }
+    { collisionBehavior: "chaining", useTypesPolyfill: "auto" }
   );
   transition.ready.then(() =>
     setVectors([{ pattern: "select", props: ["width"] }], "pseudo")
@@ -73,7 +73,7 @@ function updateCompletion() {
       { update: updateMessage, types: ["reset"] },
       {
         collisionBehavior: "chaining",
-        useTypesPolyfill: "always",
+        useTypesPolyfill: "auto",
       }
     );
   } else {

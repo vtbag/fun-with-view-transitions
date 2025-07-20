@@ -10,7 +10,7 @@ export function updateProgressUI(current, total) {
       { update, types: ["progress"] },
       {
         collisionBehavior: "chaining",
-        useTypesPolyfill: "always",
+        useTypesPolyfill: "auto",
       }
     ).finished.then(
       () => (progressFill.style.backgroundColor = `hsl(115, 74.50%, 41.60%)`)

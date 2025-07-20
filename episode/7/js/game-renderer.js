@@ -7,23 +7,20 @@ export function render(pegs) {
   const mode = viewTransitions.value;
   if (mode !== "none") {
     const types = ["move"];
-    if (mode === "vectors") types.push("lift-and-shift");
     const transition = mayStartViewTransition(
       { update, types },
       {
         collisionBehavior: mode === "normal" ? "skipOld" : "chaining",
         speedUpWhenChained: 1.33,
-        useTypesPolyfill: "always"
+        useTypesPolyfill: "auto",
       }
     );
 
     if (mode === "vectors") {
       transition.ready.then(
         () => {
-          setVectors(
-            [{ pattern: "^disk-.$", props: ["x", "y"] }],
-            "pseudo"
-          );
+          setVectors([{ pattern: "^disk-.$", props: ["x", "y"] }], "pseudo");
+          transition.types.add("lift-and-shift");
         },
         (e) => {
           console.error("View transition failed:", e);

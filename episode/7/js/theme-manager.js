@@ -32,13 +32,13 @@ async function toggleTheme() {
           },
           types: ["board-move"],
         },
-        { collisionBehavior: "chaining" , useTypesPolyfill: "always" }
+        { collisionBehavior: "chaining" , useTypesPolyfill: "auto" }
       ).finished;
     }
 
     await mayStartViewTransition(
       { update, types: ["theme-toggle"] },
-      { collisionBehavior: "chaining" , useTypesPolyfill: "always" }
+      { collisionBehavior: "chaining" , useTypesPolyfill: "auto" }
     ).finished;
 
     if (landscape) {
@@ -54,7 +54,7 @@ async function toggleTheme() {
           },
           types: ["board-move"],
         },
-        { collisionBehavior: "chaining" , useTypesPolyfill: "always" }
+        { collisionBehavior: "chaining" , useTypesPolyfill: "auto" }
       ).finished;
     }
     playAgain.disabled =

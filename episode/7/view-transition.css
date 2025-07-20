@@ -61,9 +61,6 @@
 }
 
 @keyframes lift-and-shift {
-  100% {
-    transform: translateY(0);
-  }
   15%,
   85% {
     transform: translateY(
@@ -392,12 +389,6 @@
     }
     &::view-transition-image-pair(disk-6) {
       animation-delay: 250ms;
-    }
-  }
-
-  :active-view-transition-type(lift-and-shift) {
-    &::view-transition-image-pair(.disk) {
-      animation-name: lift-and-shift;
     }
   }
 
