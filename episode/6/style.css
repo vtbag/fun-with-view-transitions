@@ -39,7 +39,6 @@ p:first-child {
 }
 
 
-
 nav a {
   display: inline-block;
   color: light-dark(#646cff, #a5a9ff);
@@ -47,7 +46,6 @@ nav a {
   margin-inline: 3vw;
 }
 
-
 main {
-  overflow:visible;
+  overflow: visible;
 }
